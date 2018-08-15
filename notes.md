@@ -26,6 +26,14 @@ __reference__
 * need to have `__init__.py` in `tests` for `unittest` CLI to pick it up via `py3 -m unittest discover`; if that doesn't matter to you, can remove it and run the tests by running `tests.test_sut`
 * [answer that got me here](https://stackoverflow.com/a/24266885/6813490)
 
+__further reading__
+
+* Hitchhiker's Guide 3.1 ('Structuring Your Project') + https://stackoverflow.com/a/49375740/6813490
+* docs - tutorial - chapter 6 ('Modules')
+* docs - language - chapter 5 ('The Import System')
+* [definitive guide to import](https://chrisyeh96.github.io/2017/08/08/definitive-guide-python-imports.html)
+* [more on imports](https://alex.dzyoba.com/blog/python-import/)
+
 ## what didn't work
 
 📝 two different import statements = flakiness btw PyCharm and terminal
