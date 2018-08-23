@@ -1,10 +1,19 @@
 # importing modules and project structure in Python
 
-tldr: bootstrapped Python project stucture
+__tldr__: learn how to import user-created modules and how to structure a Python project
 
-a bit more: Python's import system is slightly mad and spread across a bevy of PEPs. Get ready to do some digging on Stack Overflow and reading articles with titles like ['Traps for the Unwary in Python's Import System'](http://python-notes.curiousefficiency.org/en/latest/python_concepts/import_traps.html). Here's what worked (and didn't) for me.
+Python's import system is easy when it comes to modules 
 
-## what worked
+* from the stdlib
+* installed into a virtual environment
+
+but gets weird when it comes to __user-created__ modules (i.e. the ones distinct to your project)
+
+Answers are spread across a bevy of PEPs and Stack Overflow; titles like ['Traps for the Unwary in Python's Import System'](http://python-notes.curiousefficiency.org/en/latest/python_concepts/import_traps.html) give an idea of the pitfalls ahead. 
+
+Here's what worked (and didn't) for me.
+
+# what worked
 
 * project structure
 ```sh
@@ -17,7 +26,9 @@ a bit more: Python's import system is slightly mad and spread across a bevy of P
 
 * command: `py3 -m unittest discover`
 * run from: project root
-* import statement in tests: `from source import sut`
+* import statement in `test_sut.py`: 
+    - `from source import sut`
+    - `import source.sut as sut`
 * works in PyCharm:  ✅
 * work from terminal: ✅
 
@@ -34,9 +45,7 @@ __further reading__
 * [definitive guide to import](https://chrisyeh96.github.io/2017/08/08/definitive-guide-python-imports.html)
 * [more on imports](https://alex.dzyoba.com/blog/python-import/)
 
-## what didn't work
-
-📝 two different import statements = flakiness btw PyCharm and terminal
+# what didn't work
 
 * project structure
 ```sh
@@ -50,7 +59,7 @@ __further reading__
 ```
 
 * command: `py3 -m unittest test_sut.py`
-* run from: `test_structure/tests`
+* run from: `/tests`
 * import statement: `import sut`
 * PyCharm:  ❌
 * terminal: ❌ ("ModuleNotFoundError: No module named 'sut'")
@@ -58,7 +67,7 @@ __further reading__
 ---
 
 * command: `py3 -m unittest test_sut.py`
-* run from: `test_structure/tests`
+* run from: `/tests`
 * import statement: `from ..source import sut`
 * PyCharm:  ✅
 * terminal: ❌ ("ImportError: attempted relative import with no known parent package")
